@@ -1,9 +1,11 @@
 import com.relevantcodes.extentreports.LogStatus;
 import io.qameta.allure.*;
+import org.apache.commons.codec.binary.Base64;
 import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 import pages.LoginPage;
+import pages.LoginPage.LoginCredentials;
 import pages.MessagingPage;
 import utils.Report;
 
@@ -26,8 +28,8 @@ public class TC003_MyPorsche_LoginPage_LoginToPorscheInBox extends TestBase {
             //softly.assertThat(loginPage.verifyPageIsLoaded()).isTrue();
 
 
-            loginPage.setPorscheId(LoginPage.LoginCredentials.PORSCHE_ID2.getLabel())
-                    .setPassword(LoginPage.LoginCredentials.PASSWORT2.getLabel());
+            loginPage.setPorscheId(LoginCredentials.PORSCHE_ID.getLabel())
+                    .setPassword( new String (Base64.decodeBase64(LoginCredentials.PASSWORT.getLabel())));
 
             messagingPage = loginPage.clickLoginButtonAndGoToMessagingPage();
 

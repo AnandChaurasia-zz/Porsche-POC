@@ -1,5 +1,6 @@
 import com.relevantcodes.extentreports.LogStatus;
 import io.qameta.allure.*;
+import org.apache.commons.codec.binary.Base64;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.assertj.core.api.SoftAssertions;
@@ -27,8 +28,8 @@ public class TC002_MyPorsche_LoginPage_LoginToPorscheInBoxWithInvalidCredential 
             CreateExtentReport( this.getClass().getName(), "Login to My Porsche Web application");
             loginPage = getAppLaunchPage();
 
-            loginPage.setPorscheId(LoginPage.LoginCredentials.PORSCHE_ID.getLabel())
-                    .setPassword(LoginPage.LoginCredentials.PASSWORT.getLabel()).clickLoginButton();
+            loginPage.setPorscheId(LoginPage.LoginCredentials.PORSCHE_ID2.getLabel())
+                    .setPassword(new String(Base64.decodeBase64(LoginPage.LoginCredentials.PASSWORT2.getLabel()))).clickLoginButton();
 
             softly.assertThat(loginPage.getInvalidLoginDetailsNotification()).isEqualToIgnoringWhitespace(LoginPageLabels.INVALID_CREDENTIAL.getLabel());
             EXTENT_TEST_LOGGER.log(LogStatus.PASS, "Login data is Invalid", EXTENT_TEST_LOGGER.addScreenCapture(Report.CaptureScreen(driver)));
