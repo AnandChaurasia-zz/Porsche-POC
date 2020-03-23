@@ -1,0 +1,132 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "io.qameta.allure:allure-gradle:2.8.1"
+    }
+}
+
+plugins {
+    id 'java'
+    id "io.qameta.allure" version "2.8.1"
+}
+
+apply plugin: 'project-report'
+
+group 'org.porsche'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+//apply plugin:"ru.d10xa.allure"
+repositories {
+    jcenter()
+    mavenCentral()
+    maven {
+        url 'https://repo.spring.io/snapshot/'
+    }
+    maven {
+        url 'http://mvn.is.inf.uni-due.de:8081/nexus/content/repositories/atunes-dependencies/'
+    }
+}
+
+
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        if (details.requested.name == '${sikulix.libs}') {
+            def os = org.gradle.internal.os.OperatingSystem.current()
+            def targetName
+            if (os.isWindows()) {
+                targetName = 'sikulixlibswin'
+            } else if (os.isUnix()) {
+                targetName = 'sikulixlibslux'
+            } else if (os.isMacOsX()) {
+                targetName = 'sikulixlibsmac'
+            } else {
+                throw new GradleException("Unknown operating system for determining the sikulix distribution")
+            }
+            details.useTarget group: details.requested.group, name: targetName, version: details.requested.version
+            details.because 'The Maven dependency is relying on profiles to select the correct module name for the current operating system'
+        }
+    }
+}
+
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile 'org.seleniumhq.selenium:selenium-server:3.9.1'
+    compile 'net.java.dev.jna:jna-platform:4.0.0'
+    compile group: 'com.sikulix', name: 'sikulixapi', version: '1.1.0'
+    implementation group: 'jxgrabkey', name: 'jxgrabkey', version: '1.0'
+    testCompile 'org.apache.logging.log4j:log4j-core:2.11.1'
+    testCompile 'org.apache.logging.log4j:log4j-api:2.11.1'
+    testCompile 'org.assertj:assertj-core:3.6.1'
+    compile 'net.java.dev.jna:jna:5.4.0'
+    compile 'com.relevantcodes:extentreports:2.41.0'
+    compile 'commons-io:commons-io:2.6'
+    compile 'javax.activation:activation:1.1.1'
+    compile 'com.sun.xml.ws:policy:2.3.1'
+    compile 'javax.mail:mail:1.4'
+    compile 'com.uttesh:pdfngreport:2.1.3'
+    compile 'org.uncommons:reportng:1.1.4'
+    testCompile 'org.testng:testng:7.0.0'
+    compile group: 'io.qameta.allure', name: 'allure-testng', version: '2.13.0'
+    compile group: 'org.aspectj', name: 'aspectjweaver', version: '1.9.4'
+    compile group: 'org.json', name: 'json', version: '20190722'
+    compile group: 'net.lightbody.bmp', name: 'browsermob-core', version: '2.1.5'
+
+}
+
+allure {
+    version = '2.2.1'
+    autoconfigure = false
+    String allureJavaVersion = '2.0-BETA9'
+    aspectjweaver = true
+    boolean clean = true
+
+    resultsDir = file('D:\\report\\allure-results')
+    reportDir = file('D:\\report\\allure-reports')
+    String configuration = 'testCompile'
+
+    useTestNG {
+        version = '2.0-BETA12'
+    }
+
+    downloadLink = 'https://dl.bintray.com/qameta/generic/io/qameta/allure/allure/2.2.1/allure-2.2.1.zip'
+    // Allure >= 2.8.0 is no longer available on Bintray
+    // downloadLink = 'http://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.8.1/allure-commandline-2.8.1.zip'
+}
+
+
+sourceSets {
+    main {
+        runtimeClasspath = files(output.resourcesDir) + runtimeClasspath
+    }
+    test {
+        runtimeClasspath = test.runtimeClasspath
+    }
+}
+
+task runTests(type: JavaExec, dependsOn: 'classes') {
+    main = 'org.testng.TestNG'
+    classpath = files("./src/test/resources/RunTestng.xml",
+            sourceSets.main.compileClasspath,
+            sourceSets.test.compileClasspath,
+            sourceSets.main.runtimeClasspath,
+            sourceSets.test.runtimeClasspath)
+    args = ["./src/test/resources/RunTestng.xml"]
+}
+
+test {
+    useTestNG() {
+        suites './src/test/resources/RunTestng.xml'
+        useDefaultListeners = true
+    }
+}
+
+task createReport(type: Exec) {
+    commandLine 'cmd', '/c', 'allure generate -c D:\\report\\allure-results\\'
+}

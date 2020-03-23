@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.codehaus.woodstox:woodstox-core-asl:4.1.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.woodstox/woodstox-core-asl/4.1.1/1fc79e0ddf0c72408ddbbc7e558f46a15d7ba84f/woodstox-core-asl-4.1.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.woodstox/woodstox-core-asl/4.1.1/1efb7e023a2767ce11df124186a5fd0560a1588b/woodstox-core-asl-4.1.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

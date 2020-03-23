@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.uttesh:pdfngreport:2.1.3">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.uttesh/pdfngreport/2.1.3/1ed26e23447918240dd4ebc79b3715cbd27a54df/pdfngreport-2.1.3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.uttesh/pdfngreport/2.1.3/dd62bb03a9cec81031c4cf9ec5117d2703b5d319/pdfngreport-2.1.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
