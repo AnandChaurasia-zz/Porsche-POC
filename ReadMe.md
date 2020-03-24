@@ -37,7 +37,7 @@ Install Java JDK 11 on your machine. Start IntelliJ and import project as Git
 -	Gradlew run
 
 ### Reporting: 
--	\\\Porsche-POC\TestResults\
+-	\Results\digitalCommunication\digitalCommunication.html
 
   <img src="Img\ReportingImage.jpg">
 
