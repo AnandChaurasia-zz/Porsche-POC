@@ -36,10 +36,12 @@ public class TC004_MyPorsche_MessagingPage_VerifyAllFieldsAreMandatoryToSendMess
 
             softly.assertThat(newMessagePage.verifyStateOfSendButton()).isFalse();
 
-            newMessagePage.setRecipient(MessagingData.RECIPIENT.getLabel());
+            newMessagePage.selectRecipient(MessagingData.RECIPIENT.getLabel());
+            softly.assertThat(newMessagePage.getSelectRecipient().contentEquals(MessagingData.RECIPIENT.getLabel()));
             softly.assertThat(newMessagePage.verifyStateOfSendButton()).isFalse();
 
-            newMessagePage.setMessageSubject(MessagingData.SUBJECT.getLabel());
+            newMessagePage.selectSubject(MessagingData.SUBJECT_MY_PORSCHE.getLabel());
+            softly.assertThat(newMessagePage.getSelectRecipient().contentEquals(MessagingData.SUBJECT_MY_PORSCHE.getLabel()));
             softly.assertThat(newMessagePage.verifyStateOfSendButton()).isFalse();
 
             newMessagePage.setMessageBody(MessagingData.BODY.getLabel());

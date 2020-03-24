@@ -6,10 +6,7 @@ import com.relevantcodes.extentreports.LogStatus;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,6 +14,7 @@ import java.awt.*;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
+
 
 
 public class SeleniumHelper {
@@ -29,6 +27,7 @@ public class SeleniumHelper {
     private Properties config;
     private ExtentTest EXTENT_TEST_LOGGER;
     private static final Logger LOGGER = LoggerFactory.getLogger(SeleniumHelper.class);
+
 
     public SeleniumHelper(final RemoteWebDriver driver, final ExtentTest EXTENT_TEST_LOGGER) {
         this.driver = driver;
@@ -110,6 +109,34 @@ public class SeleniumHelper {
             return result;
         }
 
+    }
+
+
+    @SuppressWarnings("unchecked")
+    protected <T> T waitUntil(long timeOutInSeconds, Function<WebDriver, ?> function) {
+        return this.waitUntil(POLL_EVERY_MS, timeOutInSeconds, function);
+    }
+
+    public WebElement waitUntilElementToBeClickable(final By by) {
+        return waitUntil(ExpectedConditions.elementToBeClickable(by));
+    }
+
+    public WebElement waitUntilElementToBeClickable(final WebElement we) {
+        return waitUntil(ExpectedConditions.elementToBeClickable(we));
+    }
+
+
+
+
+    public String getSelectedOptionFromDropdown(final WebElement webElement) {
+        final String text = new Select(webElement).getFirstSelectedOption().getText();
+        return text;
+    }
+
+    public void selectedOptionFromDropdown(final WebElement webElement, final String value) {
+        webElement.click();
+        Select dropdown = new Select(webElement);
+        dropdown.selectByVisibleText(value);
     }
 
 
@@ -239,7 +266,7 @@ public class SeleniumHelper {
     }
 
     public WebElement findChildElementSearchByText(String MainMenu, String value) {
-          return driver.findElements(By.xpath(MainMenu)).stream().filter(webElement -> webElement.getText().contains(value))
+        return driver.findElements(By.xpath(MainMenu)).stream().filter(webElement -> webElement.getText().contains(value))
                 .findFirst()
                 .orElseThrow(() -> new NoSuchElementException(
                         String.format("Could not find menu item with id'%s'", value)));

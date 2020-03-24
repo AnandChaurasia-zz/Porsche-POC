@@ -22,10 +22,10 @@ public class NewMessagePage extends PageBase {
     @FindBy(css = "h3.modal-common__title")
     private WebElement NewMessageBodyLabel;
 
-    @FindBy(id = "recipientInput")
+    @FindBy(id = "recipientSelect")
     private WebElement Recipient;
 
-    @FindBy(id = "subjectInput")
+    @FindBy(id = "subjectSelect")
     private WebElement MessageSubject;
 
     @FindBy(id = "body")
@@ -63,6 +63,27 @@ public class NewMessagePage extends PageBase {
         return this;
     }
 
+    public NewMessagePage selectRecipient(String recipient){
+        helper.selectedOptionFromDropdown(Recipient, recipient );
+        return this;
+    }
+
+    public String getSelectRecipient(){
+        return helper.getSelectedOptionFromDropdown(Recipient);
+
+    }
+
+
+    public NewMessagePage selectSubject(String subject){
+        helper.selectedOptionFromDropdown(MessageSubject, subject );
+        return this;
+    }
+
+    public String getSelectSubject(){
+        return helper.getSelectedOptionFromDropdown(MessageSubject);
+
+    }
+
     public NewMessagePage setMessageSubject(String subject){
         MessageSubject.sendKeys(subject);
         return this;
@@ -96,8 +117,13 @@ public class NewMessagePage extends PageBase {
 
     public enum MessagingData {
         // @formatter:off
-        RECIPIENT("Test User"),
-        SUBJECT("Test Subject"),
+        RECIPIENT("Porsche Connect Support Great Britain"),
+        SUBJECT_MY_PORSCHE("My Porsche"),
+        SUBJECT_CONNECT("Porsche Connect Services"),
+        SUBJECT_TECHNICAL_PROBLEM("Technical problems"),
+        SUBJECT_CONTRACT("Questions about contract"),
+        SUBJECT_COMPLAINT("Complaint"),
+
         BODY("Test Body");
         // @formatter:on
 
