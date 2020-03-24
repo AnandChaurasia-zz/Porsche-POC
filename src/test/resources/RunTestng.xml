@@ -8,13 +8,12 @@
 
     <test name="Chrome:suite1_test1_results" preserve-order="true">
         <parameter name="browserType" value="chrome"/>
-        <parameter name="appURL" value="https://preview-inbox.porsche.com/gb/en_GB/messages"/>
+        <parameter name="appURL" value="https://preview-connect-portal.porsche.com/core/gb/en_GB/home"/>
         <classes>
             <class name="TC001_MyPorsche_LoginPage_VerifyElements"/>
             <class name="TC002_MyPorsche_LoginPage_LoginToPorscheInBoxWithInvalidCredential"/>
             <class name="TC003_MyPorsche_LoginPage_LoginToPorscheInBox"/>
             <class name="TC004_MyPorsche_MessagingPage_VerifyAllFieldsAreMandatoryToSendMessage"/>
-
         </classes>
     </test>
 

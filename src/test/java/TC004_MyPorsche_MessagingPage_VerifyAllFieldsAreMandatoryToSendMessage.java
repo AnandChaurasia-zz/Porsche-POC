@@ -1,5 +1,6 @@
 import com.relevantcodes.extentreports.LogStatus;
 import io.qameta.allure.*;
+import org.apache.commons.codec.binary.Base64;
 import org.assertj.core.api.SoftAssertions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
@@ -26,8 +27,8 @@ public class TC004_MyPorsche_MessagingPage_VerifyAllFieldsAreMandatoryToSendMess
             CreateExtentReport(this.getClass().getName(), "To verify all the fields(Recipient,Subject and Body) for sending the message are mandatory");
             loginPage = getAppLaunchPage();
 
-            loginPage.setPorscheId(LoginPage.LoginCredentials.PORSCHE_ID2.getLabel())
-                    .setPassword(LoginPage.LoginCredentials.PASSWORT2.getLabel());
+            loginPage.setPorscheId(LoginPage.LoginCredentials.PORSCHE_ID.getLabel())
+                    .setPassword(new String(Base64.decodeBase64(LoginPage.LoginCredentials.PASSWORT.getLabel())));
 
             MessagingPage messagingPage = loginPage.clickLoginButtonAndGoToMessagingPage().clickMessagingLink();
 

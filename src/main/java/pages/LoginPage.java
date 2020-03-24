@@ -151,10 +151,9 @@ public class LoginPage extends PageBase {
     public enum LoginCredentials {
         // @formatter:off
         PORSCHE_ID("messaging.test@porsche.ag"),
-        PASSWORT("testAccount2020!"),
-        PORSCHE_ID2("messaging.team@porsche.ag"),
-        PASSWORT2("ILov3Porsche!");
-
+        PASSWORT("dGVzdEFjY291bnQyMDIwIQ=="),
+        PORSCHE_ID2("messaging.test1@porsche.ag"),
+        PASSWORT2("dGVzdEFjY291bnQyMDIwIQ==");
         // @formatter:on
 
         private final String label;
