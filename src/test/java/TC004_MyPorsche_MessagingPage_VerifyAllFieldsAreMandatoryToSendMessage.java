@@ -38,14 +38,14 @@ public class TC004_MyPorsche_MessagingPage_VerifyAllFieldsAreMandatoryToSendMess
 
             newMessagePage.selectRecipient(MessagingData.RECIPIENT.getLabel());
             softly.assertThat(newMessagePage.getSelectRecipient().contentEquals(MessagingData.RECIPIENT.getLabel()));
-            softly.assertThat(newMessagePage.verifyStateOfSendButton()).isFalse();
+            softly.assertThat(newMessagePage.verifyStateOfSendButton("After set Recipient")).isFalse();
 
             newMessagePage.selectSubject(MessagingData.SUBJECT_MY_PORSCHE.getLabel());
             softly.assertThat(newMessagePage.getSelectRecipient().contentEquals(MessagingData.SUBJECT_MY_PORSCHE.getLabel()));
-            softly.assertThat(newMessagePage.verifyStateOfSendButton()).isFalse();
+            softly.assertThat(newMessagePage.verifyStateOfSendButton("After set Subject")).isFalse();
 
             newMessagePage.setMessageBody(MessagingData.BODY.getLabel());
-            softly.assertThat(newMessagePage.verifyStateOfSendButton()).isTrue();
+            softly.assertThat(newMessagePage.verifyStateOfSendButton("After set Body")).isTrue();
 
             newMessagePage.clickOnCancelButton();
             messagingPage.clickOnUserLoggedInIcon().clickOnLogOutButton();

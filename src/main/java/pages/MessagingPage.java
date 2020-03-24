@@ -37,7 +37,6 @@ public class MessagingPage extends PageBase {
     public boolean verifyPageIsLoaded() throws Exception {
         try {
             waitUntilLoadersNotVisible();
-           // driver.findElement(By.className("navigation-topbar-desktop__link navigation-topbar-desktop__link--user-name")).isDisplayed();
             driver.findElement(By.xpath("//a[contains(text(),' Messages')]")).isDisplayed();
             EXTENT_TEST_LOGGER.log(LogStatus.INFO, "Messaging page is loaded", EXTENT_TEST_LOGGER.addScreenCapture(Report.CaptureScreen(driver)));
             return true;

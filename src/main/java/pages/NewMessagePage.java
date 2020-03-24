@@ -105,7 +105,7 @@ public class NewMessagePage extends PageBase {
         return new MessagingPage(driver,EXTENT_TEST_LOGGER,helper);
     }
 
-    public boolean verifyStateOfSendButton(){
+    public boolean verifyStateOfSendButton(String... Logger){
         boolean buttonState=SendMessageButton.isEnabled();
         if(buttonState){
             EXTENT_TEST_LOGGER.log(LogStatus.INFO,"'SEND' button is enabled on Messaging Page",EXTENT_TEST_LOGGER.addScreenCapture(Report.CaptureScreen(driver)));
