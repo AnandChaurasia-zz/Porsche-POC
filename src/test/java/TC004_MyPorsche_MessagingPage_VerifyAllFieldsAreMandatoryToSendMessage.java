@@ -34,18 +34,18 @@ public class TC004_MyPorsche_MessagingPage_VerifyAllFieldsAreMandatoryToSendMess
 
             NewMessagePage newMessagePage = messagingPage.clickOnNewMessage();
 
-            softly.assertThat(newMessagePage.verifyStateOfSendButton()).isFalse();
+            softly.assertThat(newMessagePage.verifyStateOfSendButton("when all fields empty")).isFalse();
 
             newMessagePage.selectRecipient(MessagingData.RECIPIENT.getLabel());
             softly.assertThat(newMessagePage.getSelectRecipient().contentEquals(MessagingData.RECIPIENT.getLabel()));
-            softly.assertThat(newMessagePage.verifyStateOfSendButton("After set Recipient")).isFalse();
+            softly.assertThat(newMessagePage.verifyStateOfSendButton("after entering Recipient")).isFalse();
 
             newMessagePage.selectSubject(MessagingData.SUBJECT_MY_PORSCHE.getLabel());
             softly.assertThat(newMessagePage.getSelectRecipient().contentEquals(MessagingData.SUBJECT_MY_PORSCHE.getLabel()));
-            softly.assertThat(newMessagePage.verifyStateOfSendButton("After set Subject")).isFalse();
+            softly.assertThat(newMessagePage.verifyStateOfSendButton("after entering Subject")).isFalse();
 
             newMessagePage.setMessageBody(MessagingData.BODY.getLabel());
-            softly.assertThat(newMessagePage.verifyStateOfSendButton("After set Body")).isTrue();
+            softly.assertThat(newMessagePage.verifyStateOfSendButton("after entering Body")).isTrue();
 
             newMessagePage.clickOnCancelButton();
             messagingPage.clickOnUserLoggedInIcon().clickOnLogOutButton();

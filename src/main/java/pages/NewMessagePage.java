@@ -12,6 +12,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import utils.Report;
 
+import java.util.Arrays;
+
 public class NewMessagePage extends PageBase {
 
     private SeleniumHelper helper;
@@ -105,12 +107,12 @@ public class NewMessagePage extends PageBase {
         return new MessagingPage(driver,EXTENT_TEST_LOGGER,helper);
     }
 
-    public boolean verifyStateOfSendButton(String... Logger){
+    public boolean verifyStateOfSendButton(final String Logger){
         boolean buttonState=SendMessageButton.isEnabled();
         if(buttonState){
-            EXTENT_TEST_LOGGER.log(LogStatus.INFO,"'SEND' button is enabled on Messaging Page",EXTENT_TEST_LOGGER.addScreenCapture(Report.CaptureScreen(driver)));
+            EXTENT_TEST_LOGGER.log(LogStatus.INFO,"'SEND' button is enabled on Messaging Page "+ Logger,EXTENT_TEST_LOGGER.addScreenCapture(Report.CaptureScreen(driver)));
         }else {
-            EXTENT_TEST_LOGGER.log(LogStatus.INFO,"'SEND' button is disabled on Messaging Page", EXTENT_TEST_LOGGER.addScreenCapture(Report.CaptureScreen(driver)));
+            EXTENT_TEST_LOGGER.log(LogStatus.INFO,"'SEND' button is disabled on Messaging Page "+ Logger, EXTENT_TEST_LOGGER.addScreenCapture(Report.CaptureScreen(driver)));
         }
         return buttonState;
     }
