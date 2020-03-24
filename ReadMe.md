@@ -37,7 +37,7 @@ Install Java JDK 11 on your machine. Start IntelliJ and import project as Git
 -	Gradlew run
 
 ### Reporting: 
--	\Results\digitalCommunication\digitalCommunication.html
+-	**_ProjectLoc_**\Results\digitalCommunication\digitalCommunication.html
 
   <img src="Img\ReportingImage.jpg">
 
@@ -50,11 +50,11 @@ Page Object Model is a way to develop tests for UI applications. Some of the adv
 * Makes tests more readable
 
 ### Main challenges and next steps 
-* Test cases which I are selected are little simple in nature, but tried to cover different type of WEB UI element.
-* More complex test should be added as next step of POC to evaluate framework
-* My knowledge in gradle is at basic level, Build.Gradle file can be improvised after little research.
+* Test cases which I have selected are little simple in nature, but tried to cover different type of WEB UI element.
+* More complex test should be added as next step of POC to evaluate framework.
+* My knowledge in gradle is at basic level so Build.Gradle file can be improvised after little research.
 * Integration with CI/CD 
-* I have used Extent report but I heard Allure is better way and more aligned to Agile processes. I tried to integrate that but it is not completed yet.
+* I have used Extent report but I heard Allure is better and more aligned to Agile processes. I tried to integrate that but it is not completed yet.
 * Application is designed in Angular, So automation framework in Java Script should also be tested before finalizing framework.
 
 
