@@ -32,20 +32,15 @@ Install Java JDK 11 on your machine. Start IntelliJ and import project as Git
 
   <img src="Img/ProjectStructureDiagram.jpg">
 
-
-
-
 ###Execution: 
 -	Gradlew clean
 -	Gradlew run
-
 
 ###Reporting: 
 
   <img src="Img\ReportingImage.jpg">
 
 ###Summary
-
 Page Object Model is a way to develop tests for UI applications. Some of the advantages of using POM are as follows:
 
 * Makes Test Suites more structured and easily maintainable and reusable
