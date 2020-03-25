@@ -25,7 +25,6 @@ public class TC003_MyPorsche_LoginPage_LoginToPorscheInBox extends TestBase {
         try {
             CreateExtentReport(this.getClass().getName(), "Login to My Porsche Web application");
             loginPage = getAppLaunchPage();
-            //softly.assertThat(loginPage.verifyPageIsLoaded()).isTrue();
 
 
             loginPage.setPorscheId(LoginCredentials.PORSCHE_ID.getLabel())
